@@ -1,0 +1,95 @@
+/* Reset some default styles */
+body, h1, h2, p, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Body styling with sunset background image */
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('accounts/static/css/sunset.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff; /* Ensures text is readable on the sunset background */
+  }
+  
+  /* Welcome message styling */
+  .welcome-message {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .welcome-message h1 {
+    font-size: 60px;
+    color: #f2eef1;
+  }
+  
+  /* Login container styling */
+  .login-container {
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  h2 {
+    margin-bottom: 1.5rem;
+    color: #fff;
+  }
+  
+  /* Form styling */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    color: #333; /* Dark text color for input fields */
+  }
+  
+  input::placeholder {
+    color: #aaa; /* Placeholder text color */
+  }
+  
+  input:focus {
+    border-color: #007BFF;
+    outline: none;
+  }
+  
+  button {
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  button:active {
+    opacity: 0.7;
+  }
+  
+  #error-message {
+    color: red;
+    margin-top: 1rem;
+  }

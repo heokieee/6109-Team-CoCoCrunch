@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <span><strong>StuDone</strong></span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+
+                    <li class="dropdown">
+                        <a href="{% url 'dashboard' %}">Reminders</a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'add_reminder' %}">Add Reminder</a>
+                        </div>
+                    </li>
+                    <li><a href="#" onclick="document.getElementById('logout-form').submit();">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="task-manager">
+        <div class="page-content">
+            <div class="header">Today Tasks</div>
+            
+            <!-- Top Reminders Section -->
+            <div class="reminders">
+                <h2>Top Reminders</h2>
+                {% if top_reminders %}
+                    {% for reminder in top_reminders %}
+                    <div class="reminder">
+                        <h3>{{ reminder.title }}</h3>
+                        <p>{{ reminder.date }} at {{ reminder.time }}</p>
+                        <p>{{ reminder.description }}</p>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No reminders to show.</p>
+                {% endif %}
+            </div>
+            <!-- End of Top Reminders Section -->
+
+            <div class="content-categories">
+                <div class="label-wrapper">
+                    <input type="radio" name="nav" id="opt-1" class="nav-item" checked />
+                    <label class="category" for="opt-1" data-category="all">All</label>
+                </div>
+
+                <div class="label-wrapper">
+                    <input type="radio" name="nav" id="opt-2" class="nav-item" />
+                    <label class="category" for="opt-2" data-category="very-important">Very Important</label>
+                </div>
+
+                <div class="label-wrapper">
+                    <input type="radio" name="nav" id="opt-3" class="nav-item" />
+                    <label class="category" for="opt-3" data-category="important">Important</label>
+                </div>
+
+                <div class="label-wrapper">
+                    <input type="radio" name="nav" id="opt-4" class="nav-item" />
+                    <label class="category" for="opt-4" data-category="less-important">Less Important</label>
+                </div>
+
+                <div class="label-wrapper">
+                    <input type="radio" name="nav" id="opt-5" class="nav-item" />
+                    <label class="category" for="opt-5" data-category="upcoming">Upcoming</label>
+                </div>
+            </div>
+
+            <div class="tasks-wrapper">
+                <div class="task" data-task-id="1" data-category="very-important">
+                    <label for="item-1">
+                        <span class="label-text">Dashboard Design</span>
+                    </label>
+                    <select class="status-dropdown">
+                        <option value="completed" selected>Completed</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="not-started">Not Started</option>
+                        <option value="upcoming">Upcoming</option>
+                    </select>
+                    <button class="delete-task">Delete</button>
+                </div>
+
+                <div class="task" data-task-id="2" data-category="important">
+                    <label for="item-2">
+                        <span class="label-text">Create a userflow</span>
+                    </label>
+                    <select class="status-dropdown">
+                        <option value="completed">Completed</option>
+                        <option value="in-progress" selected>In Progress</option>
+                        <option value="not-started">Not Started</option>
+                        <option value="upcoming">Upcoming</option>
+                    </select>
+                    <button class="delete-task">Delete</button>
+                </div>
+
+                <div class="header upcoming">Upcoming Tasks</div>
+                <div class="task" data-task-id="3" data-category="upcoming">
+                    <label for="item-3">
+                        <span class="label-text">Create a Video</span>
+                    </label>
+                    <select class="status-dropdown">
+                        <option value="completed">Completed</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="not-started">Not Started</option>
+                        <option value="upcoming">Upcoming</option>
+                    </select>
+                    <button class="delete-task">Delete</button>
+                </div>
+
+                <div class="task" data-task-id="4" data-category="upcoming">
+                    <label for="item-4">
+                        <span class="label-text">Create a choreography</span>
+                    </label>
+                    <select class="status-dropdown">
+                        <option value="completed">Completed</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="not-started">Not Started</option>
+                        <option value="upcoming">Upcoming</option>
+                    </select>
+                    <button class="delete-task">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
+        {% csrf_token %}
+    </form>
+
+    <script>
+        // Pass the delete_task URL to JavaScript
+        const deleteTaskUrl = "/accounts/delete_task/";
+    </script>
+    <script type="text/javascript">
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script>
+    <script src="{% static 'js/dashboard.js' %}"></script>
+</body>
+</html>

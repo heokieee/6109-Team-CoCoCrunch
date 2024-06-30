@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Friends</title>
+    <link rel="stylesheet" href="{% static 'css/search_friends.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Search for Friends to Add</h1>
+    </header>
+    <main>
+        <div class="group-search">
+            <h2>Find Your Friends</h2>
+            <form action="{% url 'search_friends' %}" method="get">
+                <label for="friend-name">Friend's Name:</label>
+                <input type="text" id="friend-name" name="friend-name">
+                
+                <button type="submit">Search</button>
+            </form>
+
+            <!-- Display search results -->
+            {% if friends %}
+                <div class="search-results">
+                    <h2>Search Results</h2>
+                    <ul>
+                        {% for friend in friends %}
+                            <li>{{ friend.username }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 StuDone. All rights reserved.</p>
+    </footer>
+</body>
+</html>

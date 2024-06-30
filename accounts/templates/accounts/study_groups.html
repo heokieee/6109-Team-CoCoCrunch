@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Groups</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="{% static 'css/study_groups.css' %}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <span><strong>StuDone</strong></span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#">Study Groups</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="{% url 'dashboard' %}">Reminders</a>
+                    </li>
+                    <li><a href="#" onclick="document.getElementById('logout-form').submit();">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <div class="study-groups">
+            <div class="group-form">
+                <h2>Create a New Group</h2>
+                <form action="{% url 'create_group' %}" method="post">
+                    {% csrf_token %}
+                    <label for="group-name">Group Name:</label>
+                    <input type="text" id="group-name" name="group-name" required>
+                    
+                    <label for="group-description">Group Description:</label>
+                    <textarea id="group-description" name="group-description" rows="4" required></textarea>
+                    
+                    <button type="submit">Create Group</button>
+                </form>
+            </div>
+
+            <div class="group-join">
+                <h2>Join an Existing Group</h2>
+                <form action="{% url 'join_group' %}" method="post">
+                    {% csrf_token %}
+                    <label for="group-id">Group ID:</label>
+                    <input type="text" id="group-id" name="group-id" required>
+                    
+                    <button type="submit">Join Group</button>
+                </form>
+            </div>
+
+            <div class="group-search">
+                <h2>Search for Friends to Add</h2>
+                <form action="{% url 'search_friends' %}" method="get">
+                    <label for="friend-name">Friend's Name:</label>
+                    <input type="text" id="friend-name" name="friend-name">
+                    
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 StuDone. All rights reserved.</p>
+    </footer>
+
+    <!-- Logout form -->
+    <form id="logout-form" method="POST" action="{% url 'logout' %}" style="display: none;">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+
+    <!-- Link to your JS file -->
+    <script src="{% static 'js/study_groups.js' %}"></script>
+</body>
+</html>
+

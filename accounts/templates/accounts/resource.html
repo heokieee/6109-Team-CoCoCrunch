@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Library & Marketplace</title>
+    <link rel="stylesheet" href="{% static 'css/resource.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="{% static 'js/resource.js' %}" defer></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <span><strong>StuDone</strong></span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#">Resources</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="{% url 'dashboard' %}">Reminders</a>
+                    </li>
+                    <li><a href="#" onclick="document.getElementById('logout-form').submit();">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="resource-form">
+            <h2>Add a Resource</h2>
+            <form id="add-resource-form">
+                <div class="form-group">
+                    <label for="resource-title">Title</label>
+                    <input type="text" id="resource-title" name="resource-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="resource-description">Description</label>
+                    <textarea id="resource-description" name="resource-description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="resource-file">Upload File</label>
+                    <input type="file" id="resource-file" name="resource-file" required>
+                </div>
+                <button type="submit" class="btn">Add Resource</button>
+            </form>
+        </section>
+        <section class="resource-list">
+            <h2>Available Resources</h2>
+            <ul id="resources">
+                <!-- Resources will be listed here -->
+            </ul>
+        </section>
+    </main>
+</body>
+</html>

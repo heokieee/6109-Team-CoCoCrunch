@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <div class="welcome-message">
+      <h1>Welcome to StuDone</h1>
+    </div>
+  
+    <div class="login-container">
+      <h2>Login</h2>
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_username">Username</label>
+          {{ form.username }}
+        </div>
+        <div class="form-group">
+          <label for="id_password">Password</label>
+          {{ form.password }}
+        </div>
+        <button type="submit" class="btn">Login</button>
+      </form>
+      <p>Don't have an account? <a href="{% url 'registration_view' %}" class="register-link">Register here</a>.</p>
+    </div>
+  </body>
+  
+</html>

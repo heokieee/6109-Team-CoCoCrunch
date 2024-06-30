@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Group</title>
+    <link rel="stylesheet" href="{% static 'css/join_group.css' %}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <span><strong>StuDone</strong></span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                    <li><a href="{% url 'study_groups' %}">Study Groups</a></li>
+                    <li><a href="{% url 'add_reminder' %}">Add Reminder</a></li>
+                    <!-- Updated logout link -->
+                    <li><a href="#" onclick="document.getElementById('logout-form').submit();">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <div class="group-join-container">
+            <h1>Join an Existing Study Group</h1>
+            <form action="{% url 'join_group_submit' %}" method="post">
+                {% csrf_token %}
+                <label for="group-id">Group ID:</label>
+                <input type="text" id="group-id" name="group-id" required>
+                
+                <button type="submit">Join Group</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 StuDone. All rights reserved.</p>
+    </footer>
+
+    <!-- Logout form -->
+    <form id="logout-form" method="POST" action="{% url 'logout' %}" style="display: none;">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>

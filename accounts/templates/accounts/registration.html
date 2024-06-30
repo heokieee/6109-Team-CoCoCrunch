@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="registration-container">
+        <h1>Register</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="username">Username</label>
+            {{ form.username }}
+
+            <label for="email">Email</label>
+            {{ form.email }}
+
+            <label for="password">Password</label>
+            {{ form.password1 }}
+
+            <label for="password2">Confirm Password</label>
+            {{ form.password2 }}
+
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
+    </div>
+</body>
+</html>
